@@ -12,7 +12,7 @@ static const int WeekLen         = 7;
 static const int YearLen         = 12;
 
 static const char* MonthNames[YearLen] = {"January", "February", "March", "April", "May", "June", "July",
-                                     "August", "September", "October", "November", "December"};
+                                          "August", "September", "October", "November", "December"};
 
 static const int NumOfDaysInMonth[YearLen] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
@@ -100,7 +100,7 @@ const char* GetMonthName(const int CurrentMonth){
             return MonthNames[December];
             break;
         default:
-            fprintf(stderr, "Invalid number of month\n");
+            fprintf(stderr, "%s:%d\n", __FILE__, __LINE__);
             return nullptr;
             break;
     }
@@ -151,7 +151,7 @@ struct Month MonthEditor(const int CurrentMonth, const int YearNum, const int Is
 
 int EditOutputDate(int CurrentYear, int CurrentMonth, struct Year* CurrentYearSt){
     if (GetMonthAndYearNums(&CurrentMonth, &CurrentYear)){
-            fprintf(stderr, "GetMonthAndYearNumsErr Handled\n");
+            fprintf(stderr, "%s:%d\n", __FILE__, __LINE__);
             return EXIT_FAILURE;
         }
 
@@ -202,19 +202,19 @@ fprintf(stderr, "%s %d\n"
 int OutputThreeMonth(const int CurrentYear, int CurrentMonth, const int CurrentDay,
                      struct Year* CurrentYearStruct, const int TrueMonth){
     if (EditOutputDate(CurrentYear, CurrentMonth, CurrentYearStruct)){
-        fprintf(stderr, "handle error in first ouput\n");
+        fprintf(stderr, "%s:%d\n", __FILE__, __LINE__);
         return EXIT_FAILURE;
     }
     PrintMonth(*CurrentYearStruct, CurrentDay, TrueMonth);
     CurrentMonth++;
     if (EditOutputDate(CurrentYear, CurrentMonth, CurrentYearStruct)){
-        fprintf(stderr, "handle error in second ouput\n");
+        fprintf(stderr, "%s:%d\n", __FILE__, __LINE__);
         return EXIT_FAILURE;
     }
     PrintMonth(*CurrentYearStruct, CurrentDay, TrueMonth);
     CurrentMonth++;
     if (EditOutputDate(CurrentYear, CurrentMonth, CurrentYearStruct)){
-        fprintf(stderr, "handle error in third ouput\n");
+        fprintf(stderr, "%s:%d\n", __FILE__, __LINE__);
         return EXIT_FAILURE;
     }
     PrintMonth(*CurrentYearStruct, CurrentDay, TrueMonth);
