@@ -148,13 +148,11 @@ struct Month MonthEditor(const int CurrentMonth, const int YearNum, const int Is
     return CreatedMonth;
 }
 
-
 int EditOutputDate(int CurrentYear, int CurrentMonth, struct Year* CurrentYearSt){
     if (GetMonthAndYearNums(&CurrentMonth, &CurrentYear)){
             fprintf(stderr, "%s:%d\n", __FILE__, __LINE__);
             return EXIT_FAILURE;
         }
-
         *CurrentYearSt          = YearEditor(CurrentYear);
         CurrentYearSt->Month_St = MonthEditor(CurrentMonth, CurrentYearSt->YearNum, CurrentYearSt->IsLeap);
 
@@ -162,13 +160,12 @@ int EditOutputDate(int CurrentYear, int CurrentMonth, struct Year* CurrentYearSt
             fprintf(stderr, "\n");
             return EXIT_FAILURE;
         }
-
     return EXIT_SUCCESS;
 }
 
 void PrintMonth(const struct Year CurrentYear, const int CurrentDay, const int TrueMonth){
-fprintf(stderr, "%s %d\n"
-                    "%3s %3s %3s %3s %3s %3s %3s\n",
+    fprintf(stderr, " %14s %d\n\n"
+                    " %3s %3s %3s %3s %3s %3s %3s\n ",
                     CurrentYear.Month_St.Name, CurrentYear.YearNum, Monday_s, Tuesday_s, Wednesday_s, Thursday_s,
                                                                     Friday_s, Saturday_s, Sunday_s);
 
@@ -180,17 +177,17 @@ fprintf(stderr, "%s %d\n"
             if (WeekDaysCodes[weekday] == CurrentYear.Month_St.MonthDays[day].DayOfWeek){
                 if (CurrentDay == CurrentYear.Month_St.MonthDays[day].DayNumber &&
                     CurrentYear.Month_St.MonthNum == TrueMonth){
-                    fprintf(stderr, GREEN_TEXT(" %2d "), CurrentYear.Month_St.MonthDays[day].DayNumber);
+                    fprintf(stderr, RED_TEXT(" %2d "), CurrentYear.Month_St.MonthDays[day].DayNumber);
                 }
                 else if (CurrentYear.Month_St.MonthDays[day].DayOfWeek == Saturday ||
                          CurrentYear.Month_St.MonthDays[day].DayOfWeek == Sunday){
-                    fprintf(stderr, RED_TEXT(" %2d "), CurrentYear.Month_St.MonthDays[day].DayNumber);
+                    fprintf(stderr, GREEN_TEXT(" %2d "), CurrentYear.Month_St.MonthDays[day].DayNumber);
                 }
                 else{
                     fprintf(stderr, " %2d ", CurrentYear.Month_St.MonthDays[day].DayNumber);
                 }
                 if (WeekDaysCodes[weekday] == Sunday){
-                    fprintf(stderr, "\n");
+                    fprintf(stderr, "\n ");
                 }
                 break;
             }
@@ -218,6 +215,5 @@ int OutputThreeMonth(const int CurrentYear, int CurrentMonth, const int CurrentD
         return EXIT_FAILURE;
     }
     PrintMonth(*CurrentYearStruct, CurrentDay, TrueMonth);
-
     return EXIT_SUCCESS;
 }

@@ -8,7 +8,6 @@
 #define MAGENTA "\e[0;35m" ///< magenta
 #define RES_COL    "\e[0m" ///< reset color
 
-
 #define RED_TEXT(text)     RED text RES_COL     ///< red text     + reset color
 #define GREEN_TEXT(text)   GREEN text RES_COL   ///< green text   + reset color
 #define YELLOW_TEXT(text)  YELLOW text RES_COL  ///< yellow text  + reset color
